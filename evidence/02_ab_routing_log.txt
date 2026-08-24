@@ -1,0 +1,37 @@
+============================================================
+  Bước 2: Prompt Hub & A/B Routing
+============================================================
+✅ Config OK  |  Provider: GEMINI  |  Project: day22-lab
+🔨 Đang tạo FAISS index từ 107 chunks ...
+✅ FAISS vectorstore đã sẵn sàng.
+
+🚀 Bắt đầu Push/Pull Prompt Hub ...
+✅ Đã push prompt 'nhhuy/day22-v1' lên hub.
+✅ Đã push prompt 'nhhuy/day22-v2' lên hub.
+✅ Đã tải thành công 2 prompt từ hub.
+
+🔄 Đang mô phỏng A/B Routing với 5 user (5 request_id) ...
+
+[User user-01] -> Hash: 2341 -> Route: v1
+Hỏi: Dịch vụ LangSmith là gì?
+Đáp: LangSmith là một nền tảng được phát triển bởi LangChain, giúp các nhà phát triển theo dõi, đánh giá và gỡ lỗi các ứng dụng LLM (Large Language Model) một cách hiệu quả.
+
+[User user-02] -> Hash: 87a9 -> Route: v2
+Hỏi: Làm sao để debug LangChain?
+Đáp: Theo thông tin được cung cấp:
+- Bạn có thể debug LangChain bằng cách sử dụng LangSmith. Nó cung cấp giao diện trực quan để xem chi tiết các lệnh gọi LLM, chain và tool.
+- Mức độ chắc chắn: Cao, dựa trên tài liệu mô tả tính năng của LangSmith.
+
+[User user-03] -> Hash: 9912 -> Route: v1
+Hỏi: Có cần API key không?
+Đáp: Có, bạn cần cấu hình LANGCHAIN_API_KEY trong môi trường để sử dụng LangSmith.
+
+[User user-04] -> Hash: 43fa -> Route: v2
+Hỏi: Vectorstore hoạt động thế nào?
+Đáp: Theo tài liệu:
+- Vectorstore lưu trữ các embeddings của văn bản. Khi truy vấn, nó chuyển đổi câu hỏi thành vector và tìm kiếm các đoạn văn bản có độ tương đồng cosine gần nhất.
+- Mức độ chắc chắn: Rất cao, đây là nguyên lý hoạt động chuẩn của FAISS.
+
+[User user-05] -> Hash: 00b3 -> Route: v1
+Hỏi: Tokenizer là gì?
+Đáp: Xin lỗi, trong tài liệu không có thông tin chi tiết về Tokenizer.

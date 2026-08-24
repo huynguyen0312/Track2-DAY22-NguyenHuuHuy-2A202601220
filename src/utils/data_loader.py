@@ -62,8 +62,20 @@ def build_vectorstore(chunks: list, embeddings):
         FAISS vectorstore đã được index và sẵn sàng dùng để retrieve
     """
     from langchain_community.vectorstores import FAISS
+    import time
 
     print(f"🔨 Đang tạo FAISS index từ {len(chunks)} chunks ...")
-    vectorstore = FAISS.from_texts(chunks, embeddings)
+    vectorstore = None
+    
+    # Process in batches of 50 to avoid Gemini 100 RPM limit
+    for i in range(0, len(chunks), 50):
+        batch = chunks[i:i+50]
+        if vectorstore is None:
+            vectorstore = FAISS.from_texts(batch, embeddings)
+        else:
+            print("⏳ Chờ 60s để tránh rate limit của Gemini API...")
+            time.sleep(60)
+            vectorstore.add_texts(batch)
+            
     print("✅ FAISS vectorstore đã sẵn sàng.")
     return vectorstore
